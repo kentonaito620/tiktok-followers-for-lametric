@@ -7,7 +7,7 @@ app = Flask(__name__)
 def serve_followers():
     data = {
         "frames": [
-            {"text": "Followers: 4603"}  # Removed "icon": null
+            {"text": "4603"}  # Removed "icon": null
         ]
     }
 

@@ -8,7 +8,6 @@ def get_followers(username):
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
 
-    # This part may need tweaking based on TikTok's HTML
     try:
         text = soup.find("meta", {"name": "description"})["content"]
         count = text.split("Followers")[0].split()[-1]
@@ -30,6 +29,6 @@ def save_json(count):
         json.dump(data, f)
 
 if __name__ == "__main__":
-    username = "your_tiktok_username"  # Replace with real username
+    username = "theduckstore1920"
     count = get_followers(username)
     save_json(count)

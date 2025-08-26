@@ -10,7 +10,7 @@ def get_followers(username):
     print(f"Loading TikTok profile: {url}")
 
     # Set up ChromeDriver
-    service = Service("C:/Users/kento/Documents/GitHub/chromedriver-win64/chromedriver.exe")  # Adjust if needed
+    service = Service("C:/Users/kento/Documents/GitHub/chromedriver-win64/chromedriver.exe")  # Adjust path if needed
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
@@ -32,11 +32,10 @@ def get_followers(username):
     soup = BeautifulSoup(html, "html.parser")
     driver.quit()
 
-    # Try to extract follower count
+    # Extract follower count using data-e2e attribute
     try:
-        meta = soup.find("meta", {"name": "description"})
-        text = meta["content"]
-        count = text.split("Followers")[0].split()[-1]
+        tag = soup.find("strong", {"data-e2e": "followers-count"})
+        count = tag.text.strip()
         print(f"Extracted follower count: {count}")
     except Exception as e:
         print(f"Failed to extract follower count: {e}")

@@ -20,6 +20,9 @@ def get_followers(username):
     time.sleep(5)  # Let the page load fully
 
     soup = BeautifulSoup(driver.page_source, "html.parser")
+    with open("page.html", "w", encoding="utf-8") as f:
+        f.write(driver.page_source)
+
     driver.quit()
 
     try:

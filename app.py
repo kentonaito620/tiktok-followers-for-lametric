@@ -7,12 +7,11 @@ app = Flask(__name__)
 def serve_followers():
     data = {
         "frames": [
-            {"text": "Followers: 4603", "icon": None}
+            {"text": "Followers: 4603"}  # Removed "icon": null
         ]
     }
 
     if request.method == 'HEAD':
-        # Return headers only, no body
         return Response(status=200, mimetype='application/json')
 
     return jsonify(data)

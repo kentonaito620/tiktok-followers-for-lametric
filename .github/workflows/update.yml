@@ -1,0 +1,33 @@
+name: Update TikTok Followers
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour
+  workflow_dispatch:      # Allows manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run scraper
+        run: python scrape.py
+
+      - name: Commit updated JSON
+        run: |
+          git config user.name "Kento"
+          git config user.email "kentonaito620@gmail.com"
+          git add followers.json
+          git commit -m "Update follower count"
+          git push

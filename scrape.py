@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import json
 
 def get_followers(username):
-    url = f"https://www.tiktok.com/@theduckstore1920"
+    url = f"https://www.tiktok.com/@{username}"
     headers = {"User-Agent": "Mozilla/5.0"}
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
